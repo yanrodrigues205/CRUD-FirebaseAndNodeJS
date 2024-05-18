@@ -65,6 +65,61 @@ class CollectPointController
         }
     }
 
+    async deleteCollectPoint(req, res)
+    {
+        const { id } = req.body;
+
+        if(!id || id.length != 20)
+        {
+            return res.status(422).json({
+                message: "This operation requires the id, it is worth mentioning that it had 20 characters!",
+                status: 422
+            });
+        }
+
+
+        try
+        {
+            const doc = this.#database.collection("collect_point").doc(id);
+
+            const getDoc = await doc.get();
+
+            if(getDoc.exists)
+            {
+                const deleteDoc = await doc.delete();
+
+                if(!deleteDoc)
+                {
+                    return res.status(422).json({
+                        message: "Unable to delete collection point!",
+                        status: 422
+                    });
+                }
+
+                return res.status(202).json({
+                    message: "Collection point was successfully deleted!",
+                    status: 202
+                });
+
+            }
+            else
+            {
+                return res.status(422).json({
+                    message: "This identification(id) does not exist within the database!",
+                    status: 422
+                });
+            }
+
+
+        }
+        catch(err)
+        {
+            console.error(err);
+        }
+
+
+    }
+
    
 
 }
