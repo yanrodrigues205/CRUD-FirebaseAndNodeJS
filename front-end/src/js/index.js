@@ -29,4 +29,33 @@ function getAll()
         alert(msg);
    });
 }
+
+
+function actionDeleteById(element)
+{
+    let id = element.getAttribute("data-id");
+    $("#collect_point_id").text(id);
+    const confirm = document.getElementById("confirm_delete");
+    confirm.setAttribute("data-id", id);
+}
+
+
+function deleteById(element)
+{
+    let id = element.getAttribute("data-id");
+    console.log("acionou funcao, id => "+ id)
+    $.ajax({
+        url: dominio + "collect_point/delete/" + id,
+        type: "DELETE"
+    }).done((response) => {
+        console.log(response);
+        if(response.status == 202)
+        {
+            alert("The collection point has been successfully deleted!");
+            getAll();
+        }
+    })
+}
+
+
 getAll();
