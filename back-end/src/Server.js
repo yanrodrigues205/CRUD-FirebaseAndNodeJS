@@ -2,6 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import admin from "firebase-admin";
 import router from "./Routes.js";
+import cors from "cors";
 import serviceAccount from "./serviceAccount.json" assert { type: "json" };
 
 class Server
@@ -25,6 +26,7 @@ class Server
     {
         this.#app.use(this.#bodyParser.json());
         this.#app.use(this.#router);
+        this.#app.use(cors());
         this.#app.listen(3030, () => {
             console.log("Server started successfully! 🚀");
         })
