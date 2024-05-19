@@ -8,7 +8,7 @@ router.post("/collect_point/create", (req,res) => {
     collectPointController.createCollectPoint(req, res);
 });
 
-router.delete("/collect_point/delete", (req, res) => {
+router.delete("/collect_point/delete/:id", (req, res) => {
     collectPointController.deleteCollectPoint(req, res);
 });
 

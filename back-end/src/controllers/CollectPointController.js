@@ -67,8 +67,7 @@ class CollectPointController
 
     async deleteCollectPoint(req, res)
     {
-        const { id } = req.body;
-
+        const id  = req.params.id;
         if(!id || id.length != 20)
         {
             return res.status(422).json({
