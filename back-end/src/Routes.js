@@ -16,4 +16,8 @@ router.put("/collect_point/update", (req, res) => {
     collectPointController.updateCollectPoint(req, res);
 });
 
+router.get("/collect_point/getall", (req, res) => {
+    collectPointController.getAllCollectPoint(req, res);
+});
+
 export default router;

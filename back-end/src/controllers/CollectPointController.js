@@ -120,7 +120,7 @@ class CollectPointController
 
     }
 
-    async  updateCollectPoint(req, res)
+    async updateCollectPoint(req, res)
     {
         const { id, name, description, work_hours, collect_user } = req.body;
         if(!id)
@@ -185,6 +185,25 @@ class CollectPointController
         }
     }
    
+    async getAllCollectPoint(req, res)
+    {
+        try
+        {
+            const doc = await this.#database.collection("collect_point").get();
+
+            const collect_points = [];
+
+            doc.forEach(collect_point => {
+                collect_points.push({ id: collect_point.id, ...collect_point.data()});
+            });
+
+            return res.status(202).json(collect_points);
+        }
+        catch(err)
+        {
+            console.error(err);
+        }
+    }
 
 }
 
