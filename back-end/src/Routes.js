@@ -10,6 +10,10 @@ router.post("/collect_point/create", (req,res) => {
 
 router.delete("/collect_point/delete", (req, res) => {
     collectPointController.deleteCollectPoint(req, res);
-})
+});
+
+router.put("/collect_point/update", (req, res) => {
+    collectPointController.updateCollectPoint(req, res);
+});
 
 export default router;

@@ -120,6 +120,70 @@ class CollectPointController
 
     }
 
+    async  updateCollectPoint(req, res)
+    {
+        const { id, name, description, work_hours, collect_user } = req.body;
+        if(!id)
+        {
+            return res.status(422).json({
+                "message": "Add the id you want to change and the respective fields to change. (id, name, description, work_hours, collect_user)!",
+                "status": 422
+            });
+        }
+
+        let data = {
+            id,
+            name,
+            description,
+            work_hours,
+            collect_user,
+            work_hours
+        }
+
+
+        const filterData = {};
+        for(const [key, value] of Object.entries(data))
+        {
+            if(value !== null && value !== undefined)
+            {
+                filterData[key] = value;
+            }
+        }
+
+        try
+        {
+            const doc = await this.#database.collection("collect_point").doc(id);
+
+            const getDoc = await doc.get();
+
+            if(!getDoc.exists)
+            {
+                return res.status(422).json({
+                    message: "This identification(id) does not exist within the database!",
+                    status: 422
+                });
+            }
+
+            const update = await doc.update(filterData);
+
+            if(!update)
+            {
+                return res.status(500).json({
+                    message: "It was not possible to change the collection point!",
+                    status: 500
+                });
+            }
+
+            return res.status(202).json({
+                message: "Collection point has been changed successfully!",
+                status: 202
+            })
+        }
+        catch(err)
+        {
+            console.error(err);
+        }
+    }
    
 
 }
