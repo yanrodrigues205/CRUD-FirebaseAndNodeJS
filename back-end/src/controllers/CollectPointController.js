@@ -204,6 +204,40 @@ class CollectPointController
         }
     }
 
+    async getCollectPointByID(req, res)
+    {
+        const id = req.body.id;
+
+        if(!id)
+        {
+            return res.status(422).json({
+                "message": "Add the id you want to change and the respective fields to get by id. (id)!",
+                "status": 422
+            });
+        }
+
+        try
+        {
+            const collect_point = this.#database.collection("collect_point").doc(id);
+
+            const doc = await collect_point.get();
+
+            if(!doc.exists)
+            {
+                return res.status(422).json({
+                    message: "This identification(id) does not exist within the database!",
+                    status: 422
+                });
+            }
+
+            return res.status(202).json(doc.data());
+        }
+        catch(err)
+        {
+            console.error(err);
+        }
+    }
+
 }
 
 export default CollectPointController;

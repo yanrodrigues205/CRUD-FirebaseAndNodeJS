@@ -20,4 +20,8 @@ router.get("/collect_point/getall", (req, res) => {
     collectPointController.getAllCollectPoint(req, res);
 });
 
+router.post("/collect_point/getbyid", (req, res) => {
+    collectPointController.getCollectPointByID(req, res);
+});
+
 export default router;
