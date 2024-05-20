@@ -110,4 +110,31 @@ function updateById()
 }
 
 
+function insertCollectPoint(){
+    const name = $("#name_insert_cp").val();
+    const description = $("#description_insert_cp").val();
+    const work_hours = $("#work_hours_insert_cp").val();
+    const collect_user = $("#collect_user_insert_cp").val();
+
+    let data = {
+        name,
+        description,
+        work_hours,
+        collect_user
+    }
+
+
+    $.ajax({
+        url: dominio + "collect_point/create",
+        dataType: "json",
+        type: "POST",
+        data: JSON.stringify(data),
+        contentType: "application/json; charset=utf-8"
+    }).done(response => {
+        alert(response.message);
+        getAll();
+    });
+}
+
+
 getAll();

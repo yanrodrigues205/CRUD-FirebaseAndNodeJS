@@ -29,7 +29,7 @@
               </div>
             </div>
           </nav><br>
-
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal3"><i class="fa-solid fa-plus"></i></button>
         <table id="example" class="table table-striped" style="width:100%">
             <thead>
                 <tr>
@@ -101,6 +101,54 @@
         </div>
       </div>
     </div>
+
+
+
+    
+
+    <div class="modal fade" id="modal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Insert Collect Point</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="recipient-name" class="col-form-label">Name</label>
+                <input type="text" class="form-control" id="name_insert_cp">
+              </div>
+              <div class="mb-3">
+                <label for="message-text" class="col-form-label">Description</label>
+                <textarea class="form-control" id="description_insert_cp"></textarea>
+              </div>
+
+
+              <div class="mb-3">
+                <label for="recipient-name" class="col-form-label">Work Hours</label>
+                <input type="text" class="form-control" id="work_hours_insert_cp">
+              </div>
+
+
+              <div class="mb-3">
+                <label for="recipient-name" class="col-form-label">Collect User</label>
+                <input type="text" class="form-control" id="collect_user_insert_cp">
+              </div>
+            </form>
+
+            
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" onclick="insertCollectPoint()" data-bs-dismiss="modal" class="btn btn-primary">Send</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
 
 
     <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
