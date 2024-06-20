@@ -10,6 +10,7 @@ class CollectPointController
         this.#admin = admin;
         const start = this.#admin.initializeApp({
             credential: this.#admin.credential.cert(serviceAccount),
+            databaseURL: "https://projetinho-vanessa-default-rtdb.firebaseio.com/"
         });
         this.#database = start.firestore();
     }
@@ -237,6 +238,25 @@ class CollectPointController
             console.error(err);
         }
     }
+
+    async middleware(req, res, next)
+    {
+        const token = req.headers['authorization'];
+        
+        if (!token) {
+            return res.status(403).json({ message: 'Token não fornecido!' });
+        }
+        
+        jwt.verify(token, 'secreto', (err, decoded) => {
+            if (err) {
+            return res.status(401).json({ message: 'Token inválido!' });
+            }
+            req.decoded = decoded;
+            next();
+        });
+    }
+
+    
 
 }
 

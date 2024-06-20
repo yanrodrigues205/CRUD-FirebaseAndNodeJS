@@ -24,4 +24,12 @@ router.post("/collect_point/getbyid", (req, res) => {
     collectPointController.getCollectPointByID(req, res);
 });
 
+router.post("/login", (req, res) => {
+    collectPointController.login(req,res);
+});
+
+router.post("/register", (req, res) => {
+    collectPointController.register(req, res);
+});
+
 export default router;
